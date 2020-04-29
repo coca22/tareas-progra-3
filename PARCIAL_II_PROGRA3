@@ -1,0 +1,254 @@
+def codigo_cliente():
+    while True:
+        codigo_id = input("Codigo: ")
+        if codigo_id == "":
+            print("Error no puede dejar en blanco esta casilla.")
+        else:
+            return codigo_id
+
+def nombre_cliente():
+    while True:
+        nombre_id = input("Nombre del Cliente: ")
+        if nombre_id == "":
+            print("Error se debe incluir un nombre.")
+        else:
+            return nombre_id
+
+def direccion_cliente():
+    while True:
+        direccion_id = input("Direccion: ")
+        if direccion_id == "":
+            print("Error se debe ingresar una direccion.")
+        else:
+            return direccion_id
+
+def telefono_cliente():
+    while True:
+        telefono_id = input("Telefono: ")
+        if telefono_id == "":
+            print("Error se debe ingresar un No. de Telefono.")
+        else:
+            return telefono_id
+
+def mostrar_clientes():
+    if len(clientes) == 0:
+        print("Esta Vacia.")
+    else:
+        clientes.sort()
+        print("\n".join(i[0] + " - " + str(i[1])+ " - " +str(i[2]) + " - " + str(i[3])  for i in clientes))
+
+def codigo_proyecto():
+    while True:
+        cod_proyect = input("Ingrese codigo para el nuevo Proyecto: ")
+        if cod_proyect == "":
+            print("Error no puede dejar en blanco esta casilla.")
+        else:
+            return cod_proyect
+
+def informacion_proyecto():
+    while True:
+        info_proyect = input("Ingresar descripción del proyecto: ")
+        if info_proyect == "":
+            print("Error se debe ingresar una descripción sobre el proyecto ")
+        else:
+            return info_proyect
+
+def estado_proyecto():
+    while True:
+        estado_proyect = input("Ingrese el estado del proyecto: ")
+        if estado_proyect == "":
+            print("Error se debe ingresar un estado del proyecto.")
+        else:
+            return estado_proyect
+
+def cliente_proyecto():
+    while True:
+        cod_cliente = input("Codigo del Cliente: ")
+        if cod_cliente == "":
+            print("Error se debe ingresar el codigo del cliente.")
+        else:
+            return cod_cliente
+
+def mostrar_proyecto():
+    if len(proyectos) == 0:
+        print("La lista esta Vacia.")
+    else:
+        proyectos.sort()
+        print("\n".join(i[0] + " - " + str(i[1])+ " - " +str(i[2]) + " - " +str(i[3]) for i in proyectos))
+
+def area_id():
+    while True:
+        cod_area = input("Codigo de Region: ")
+        if cod_area == "":
+            print("No puede dejar vacio.")
+        else:
+            return cod_area
+
+def id_municipio():
+    while True:
+        nombremun = input("Nombre del Municipio: ")
+        if nombremun == "":
+            print("Debe ingresar un nombre de Municipio ")
+        else:
+            return nombremun
+
+def id_departamento():
+    while True:
+        codigodep = input("Nombre del Departamento: ")
+        if codigodep == "":
+            print("Debe ingresar un Nombre de Departamento.")
+        else:
+            return codigodep
+
+def ImprimirRegion():
+    if len(regiones) == 0:
+        print("La lista esta Vacia.")
+    else:
+        regiones.sort()
+        print("\n".join(i[0] + " - " + str(i[1])+ " - " +str(i[2]) for i in regiones))
+
+def ImprimirRegProy():
+    if len(proyectos) == 0:
+        print("La lista esta Vacia.")
+    else:
+        proyectos.sort()
+        print("\n".join(i[0] + " - " + str(i[1])+ " - " +str(i[2])for i in proyectos)
+        + " - "+"\n".join(i[0] + " - " + str(i[1])+ " - " +str(i[2])for i in clientes))
+
+def borrarCliente():
+    if len(clientes) == 0:
+        print("No se ha ingresado ningun cliente.")
+    else:
+        codigo = codigo_cliente()
+        indice = buscarCliente(codigo)
+        if indice == -1:
+            print("No se ha encontrado el cliente '{}'".format(codigo))
+            return False
+        print("Se ha eliminado el cliente '{}' con nombre {}".format(codigo, clientes[indice][1]))
+        del clientes[indice]
+        return True
+
+def buscarCliente(nombre):
+    for i, e in enumerate(clientes):
+        if e[0] == nombre:
+            return i
+    return -1
+
+
+def borrarProyecto():
+
+    if len(proyectos) == 0:
+        print("No se ha ingresado ningun Proyecto ")
+    else:
+        codigo = codigo_proyecto()
+        indice = buscarProyecto(codigo)
+        if indice == -1:
+            print("No se ha encontrado el Proyecto '{}'".format(codigo))
+            return False
+
+        print("Se ha eliminado el proyecto '{}' con nombre {}".format(codigo, proyectos[indice][1]))
+        del proyectos[indice]
+        return True
+
+
+def buscarProyecto(nombre):
+    for i, e in enumerate(proyectos):
+        if e[0] == nombre:
+            return i
+    return -1
+
+
+def borrarRegion():
+
+    if len(regiones) == 0:
+        print("No se ha ingresado ninguna Region ")
+    else:
+        codigo = area_id()
+        indice = buscarRegion(codigo)
+        if indice == -1:
+            print("No se ha encontrado Ninguna Region '{}'".format(codigo))
+            return False
+
+        print("Se ha eliminado La Region '{}' con nombre {}".format(codigo, regiones[indice][1]))
+        del regiones[indice]
+        return True
+
+
+def buscarRegion(nombre):
+    for i, e in enumerate(regiones):
+        if e[0] == nombre:
+            return i
+    return -1
+
+
+def Menu():
+    print("---------------------------------------------------------------")
+    print("Selecciona una opción...")
+    print("-------------------------AREA DE CLIENTES----------------------")
+    print("\t1 - Registrar Cliente Nuevo.")
+    print("\t2 - Listado de los clientes.")
+    print("-------------------------AREA DE PROYECTOS---------------------")
+    print("\t3 - Ingresar Proyectos.")
+    print("\t4 - Listado de Proyectos.")
+    print("\t5 - Registro de Proyectos ")
+    print("-------------------------AREA GEOGRAFICA-----------------------")
+    print("\t6 - Ingresar Municipio y Departamento ")
+    print("\t7 - Listado de Municipios y Departamentos ")
+    print("-------------------------MAS OPCIONES--------------------------")
+    print("\t8 - Eliminar ")
+    print("\t0 - Salir")
+
+def menu2():
+
+    print("-------------------------Area de Depuracion--------------------")
+    print("1 - Eliminar a un Cliente ")
+    print("2 - Eliminar un Proyecto ")
+    print("3 - Eliminar alguna Region ")
+    print("4 - Deseas regresar al Menu? ")
+
+clientes = []
+proyectos = []
+regiones = []
+
+
+while True:
+    Menu()
+
+    try:
+        opcion = int(input("Ingrese el número del area donde desea trabajar: "))
+    except:
+        opcion = -1
+
+    if opcion == 1:
+        clientes.append((codigo_cliente(),nombre_cliente(), direccion_cliente(),telefono_cliente()))
+    elif opcion == 2:
+        mostrar_clientes()
+    elif opcion == 3:
+        proyectos.append((codigo_proyecto(),informacion_proyecto(),estado_proyecto(),cliente_proyecto()))
+    elif opcion == 4:
+        mostrar_proyecto()
+    elif opcion == 5:
+        ImprimirRegProy()
+    elif opcion == 6:
+        regiones.append((area_id(),id_municipio(),id_departamento()))
+    elif opcion == 7:
+        ImprimirRegion()
+
+    elif opcion == 8:
+        menu2()
+
+        opcion2 = input(" Ingrese el numero del area a trabajar ")
+
+        if opcion2 == "1":
+            borrarCliente()
+        if opcion2 == "2":
+            borrarProyecto()
+        if opcion2 == "3":
+            borrarRegion()
+        if opcion2 == "4":
+            break
+
+    elif opcion == 0:
+        break
+    else:
+        print("La opción ingresada no es correcta, indica una opción correcta")
